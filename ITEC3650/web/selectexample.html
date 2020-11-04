@@ -2,19 +2,25 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 	<meta charset="UTF-8">
- 	<meta name="description" content="Example of Submit">
+ 	<meta name="description" content="Example of Select">
  	<meta name="keywords" content="HTML, CSS">
 	<meta name="author" content="Bruce Bauer">
-	<title>Example of Submit</title>
+	<title>Example of Select</title>
 </head>
 <body>
-<h1>Example of Submit Button</h1>
+<h1>Example of Select</h1>
 <!-- Display the webpage - See https://gist-it.appspot.com/ -->
-<script src="https://gist-it.appspot.com/github/blbauer/hello-world/raw/master/submit-test.html?footer=no"></script>
-<form id="SubmitExampleForm" action="https://brucebauer.info/assets/ITEC3650/datadump.php">
-	<input type="submit" value="SubmitExample" Name="SubmitButton">
-	<label for="Name">Name: </label>
-	<input type="text" id="Name" name="Name" size="30" maxlength="10">
+<script src="https://gist-it.appspot.com/github/blbauer/courses/raw/main/ITEC3650/web/selectexample.html?footer=no"></script>
+<form id="SelectExampleForm" action="https://brucebauer.info/assets/ITEC3650/datadump.php">
+	<input type="submit" value="SelectExample" name="SelectButton">
+	<label>Auto: </label>
+		<select name="Auto" id="Auto">
+		    <option value="">Select an Auto...</option>
+		    <option value="Volvo">Volvo (Latin for 'I roll')</option>
+		    <option value="Saab">Saab (Swedish Aeroplane AB)</option>
+		    <option value="Mercedes (Mercedes-Benz">Mercedes (Mercedes-Benz)</option>
+		    <option value="Audi">Audi (Auto Union Deutschland Ingolstadt)</option>
+		</select>
 </form>
 </body>
 </html>
