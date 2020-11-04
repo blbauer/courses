@@ -11,10 +11,12 @@
 <h1>Example of Checkbox</h1>
 <!-- Display the webpage - See https://gist-it.appspot.com/ -->
 <script src="https://gist-it.appspot.com/github/blbauer/courses/raw/main/ITEC3650/web/checkboxexample.html?footer=no"></script>
-<form id="SubmitExampleForm" action="https://brucebauer.info/assets/ITEC3650/datadump.php">
-	<input type="submit" value="SubmitExample" Name="SubmitButton">
-	<label for="Name">Name: </label>
-	<input type="text" id="Name" name="Name" size="30" maxlength="10">
+<form id="CheckboxExampleForm" action="https://brucebauer.info/assets/ITEC3650/datadump.php">
+	<input type="submit" value="CheckboxExample" name="CheckboxButton">
+	<label>Fruits: </label>
+	<label for="Apple"><input type="checkbox" name="fruit1" id="Apple" value="Apple">Red Apple</label>
+	<label for="Pear"><input type="checkbox" name="fruit2" id="Pear" value="Pear">Green Pear</label>
+	<label for="Banana"><input type="checkbox" name="fruit3" id="Fig" value="Fig">Brown Fig</label>
 </form>
 </body>
 </html>
