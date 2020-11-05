@@ -23,11 +23,11 @@
 <form id="RadioExampleValidateForm" action="https://brucebauer.info/assets/ITEC3650/datadump.php">
 	<input type="submit" value="RadioExample" name="RadioButton">
 	<label>Cars: </label>
-	<label for="Chevrolet"><input type="radio" name="mycar" id="Chevrolet" value="Chevrolet"
+	<label for="myChevrolet"><input type="radio" id="myChevrolet" name="mycar" value="Chevrolet" 
 		data-rule-required="true" data-msg-required="Car is Required" />Chevrolet</label>
-	<label for="Ford"><input type="radio" name="mycar" id="Ford" value="Ford">Ford</label>
-	<label for="Dodge"><input type="radio" name="mycar" id="Dodge" value="Dodge">Dodge</label>
-	<label for="mycar" class="error"></label><br>
+	<label for="myFord"><input type="radio" id="myFord" name="mycar" value="Ford" />Ford Motor</label>
+	<label for="myDodge"><input type="radio" id="myDodge" name="mycar" value="Dodge" />Dodge Ram</label>
+    <label for="mycar" class="error"></label><br>
 </form>
 <script>
 $( "#RadioExampleValidateForm" ).validate({
