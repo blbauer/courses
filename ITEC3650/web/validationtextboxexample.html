@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+	<meta charset="UTF-8">
+ 	<meta name="description" content="Example of Textbox With Validation">
+ 	<meta name="keywords" content="HTML, CSS">
+	<meta name="author" content="Bruce Bauer">
+	<title>Example of Textbox With Validation</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/additional-methods.min.js"></script>
+	<style>
+   	.error {
+        color: red;
+        padding-left: 5px;
+   	}
+	</style>
+</head>
+<body>
+<h1>Example of Textbox With Validation</h1>
+<!-- Display the webpage - See https://gist-it.appspot.com/ -->
+<script src="https://gist-it.appspot.com/github/blbauer/courses/raw/main/ITEC3650/web/textboxexample.html"></script><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<form id="TextboxExampleValidateForm" action="https://brucebauer.info/assets/ITEC3650/datadump.php">
+	<input type="submit" value="SubmitExample" Name="SubmitButton">
+	<label for="Age">Age:</label>
+	<input type="text" id="Age" name="Age" size="3" maxlength="3"
+		data-rule-required="true"  data-msg-required="Age is Required" 
+		data-rule-number="true" data-msg-number="Age must be a number in years"
+		data-rule-min="18" data-msg-min="Age must be greater than or equal to 18 years"
+		data-rule-max="65" data-msg-max="Age must be less than or equal to 65 years">
+	<label for="Age" class="error"></label><br>
+</form>
+<script>
+$( "#TextboxExampleValidateForm" ).validate({
+
+});
+</script>
