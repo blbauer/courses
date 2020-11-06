@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+	<meta charset="UTF-8">
+ 	<meta name="description" content="Example of Radio With Validation and Event">
+ 	<meta name="keywords" content="HTML, CSS">
+	<meta name="author" content="Bruce Bauer">
+	<title>Example of Radio With Validation and Event</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.2/dist/jquery.validate.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.2/dist/additional-methods.min.js"></script>
+	<style>
+   		.error {
+        	color: red;
+        	padding-left: 5px;
+   		}
+	</style>
+</head>
+<body>
+<h1>Example of Radio With Validation and Event</h1>
+<!-- Display the webpage - See https://gist-it.appspot.com/ -->
+<script src="https://gist-it.appspot.com/github/blbauer/courses/raw/main/ITEC3650/web/eventradioexample.html?footer=no"></script>
+<form id="RadioExampleEventForm" onsubmit="return false">
+	<input type="submit" value="RadioExample" name="RadioButton" onclick="RadioExample()">
+	<label>Cars: </label>
+	<label for="rdChevrolet"><input type="radio" id="rdChevrolet" name="rdcar" value="Chevrolet" 
+		data-rule-required="true" data-msg-required="Car is Required" />Chevrolet</label>
+	<label for="rdFord"><input type="radio" id="rdFord" name="rdcar" value="Ford" />Ford Motor</label>
+	<label for="rdDodge"><input type="radio" id="rdDodge" name="rdcar" value="Dodge" />Dodge Ram</label>
+	<label for="rdcar" class="error"></label>
+	<span id="RadioExampleValue"></span>
+	<br>
+</form>
+<script>
+function RadioExample() {
+    if (document.getElementById("rdChevrolet").checked) {
+        document.getElementById("RadioExampleValue").innerHTML = 
+            document.getElementById("rdChevrolet").value;
+    }
+    if (document.getElementById("rdFord").checked) {
+        document.getElementById("RadioExampleValue").innerHTML = 
+            document.getElementById("rdFord").value;
+    }
+    if (document.getElementById("rdDodge").checked) {
+        document.getElementById("RadioExampleValue").innerHTML = 
+            document.getElementById("rdDodge").value;
+    }
+}
+$( "#RadioExampleEventForm" ).validate({
+
+});</script>
+</html>	
