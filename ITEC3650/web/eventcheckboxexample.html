@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+	<meta charset="UTF-8">
+ 	<meta name="description" content="Example of Checkbox With Validation and Event">
+ 	<meta name="keywords" content="HTML, CSS">
+	<meta name="author" content="Bruce Bauer">
+	<title>Example of Checkbox With Validation and Event</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.2/dist/jquery.validate.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.2/dist/additional-methods.min.js"></script>
+	<style>
+   		.error {
+        	color: red;
+        	padding-left: 5px;
+   		}
+	</style>
+</head>
+<body>
+<h1>Example of Checkbox With Validation and Event</h1>
+<!-- Display the webpage - See https://gist-it.appspot.com/ -->
+<script src="https://gist-it.appspot.com/github/blbauer/courses/raw/main/ITEC3650/web/eventcheckboxexample.html?footer=no"></script>
+<form id="CheckboxExampleEventForm" onsubmit="return false">
+	<input type="submit" value="CheckboxExample" name="CheckboxButton" onclick="CheckboxExample()">
+	<label>Fruits: </label>
+	<label for="ckApple"><input type="checkbox" name="ckfruit1" id="ckApple" value="Apple">Red Apple</label>
+	<label for="ckPear"><input type="checkbox" name="ckfruit2" id="ckPear" value="Pear">Green Pear</label>
+	<label for="ckBanana"><input type="checkbox" name="ckfruit3" id="ckBanana" value="Banana">Yellow Banana</label>
+	<span id="CheckBoxExampleAppleValue"></span>
+	<span id="CheckboxExamplePearValue"></span>
+	<span id="CheckBoxExampleBananaValue"></span>
+</form>
+<script>
+function CheckboxExample() {
+
+    document.getElementById("CheckBoxExampleAppleValue").innerHTML = "";
+    document.getElementById("CheckboxExamplePearValue").innerHTML = "";
+    document.getElementById("CheckBoxExampleBananaValue").innerHTML =  "";
+
+    if (document.getElementById("ckApple").checked) {
+        document.getElementById("CheckBoxExampleAppleValue").innerHTML = document.getElementById("ckApple").value;
+    }
+    if (document.getElementById("ckPear").checked) {
+        document.getElementById("CheckboxExamplePearValue").innerHTML = document.getElementById("ckPear").value;
+    }
+    if (document.getElementById("ckBanana").checked) {
+        document.getElementById("CheckBoxExampleBananaValue").innerHTML = document.getElementById("ckBanana").value;
+    }
+}
+</script>
+</html>	
