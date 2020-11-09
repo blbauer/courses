@@ -1,47 +1,46 @@
-<html>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+	<meta charset="UTF-8">
+ 	<meta name="description" content="AJAX Hints">
+ 	<meta name="keywords" content="AJAX">
+	<meta name="author" content="Bruce Bauer">
+    <title>Example of AJAX Hints</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
 <body>
-<h1>Get Hints Example</h1>
+<h1>Example of AJAX Hints</h1>
+<!-- Display the webpage - See https://gist-it.appspot.com/ -->
+<script src="https://gist-it.appspot.com/github/blbauer/courses/raw/main/ITEC3650/web/hints.html?footer=no"></script>
 <p>Start typing a name in the input field below:</p>
 <p>First name: <input type="text" id=txtName onkeyup="showHint()"></p>
 <p>Suggestions: <span id="txtHint"></span></p>
 <script>
 function showHint() {
-    
     /* On each keystroke, get the current value of the input text box */
     var str = document.getElementById("txtName").value;
-    
     /* if the textbox is empty, then the hint is empty */
-
     if (str.length == 0) { 
         document.getElementById("txtHint").innerHTML = "";
         return;
-
     } else {
-
         /* URL for AJAX Call */
         var myURL = "http://brucebauer.info/assets/ITEC3650/gethint.php";
-        
-        /* AJAX Method (POST of GET, usually POST) */
+        /* AJAX Method (POST or GET) */
         var myMethod = "POST";
-        
         /* Object containing the data sent to the AJAX page.
-        The "gethint.php" page requires the "str" value 
+        The "gethint.php" page requires a value for the partial name
         The properites of the object must EXACTLY match the requirement of the AJAX page*/
-
         var myData = {};
         myData.Name = str;
-
         /* Make sure the document is ready */
         $(document).ready(function() { 
-            
             /* Perfomr AJAX call */
-            
             $.ajax({
               method: myMethod,
               data: myData,
               url: myURL
             })
-        
             /* AJAX complete - your code goes here - display the returned message */
               .done(function( msg ) {
                 document.getElementById("txtHint").innerHTML = msg;
