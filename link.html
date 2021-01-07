@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+</head>
+<body>
+<script>
+/* Used to open a link in a new tab.  Used instead of an <a> because:
+
+1.  Blackboard runs in an <iframe>
+2.  Some websites forbid loading content in an iframe (webserver X-Frame option)
+3.  Github Markdown strips out the "target" attibute
+
+The full URL including http/https is passed in the url tag
+*/
+    
+/* Get the value of the url tag from the URI */
+var urlTag = "url=";
+var urlTagLength = urlTag.length;
+var urlOffset = window.location.href.search(urlTag);
+var url = window.location.href.slice(urlOffset + urlTagLength);
+
+/* Go back to the previous screen else this page (which is blank) will remain displayed */
+window.history.back()
+
+/* Open the new window with the url in a new tab and force focus to it */
+var win = window.open(url, '_blank');
+win.focus();
+</script>
+</body>
+</html>
