@@ -27,7 +27,7 @@ The first paragraph of your cover letter should include information on the posit
 
 ***(space between paragraphs)***  
 
-**Final Paragraph** 
+**Final Paragraph**   
 Conclude your cover letter by thanking the employer for considering you for the position. Include information on how you will follow-up.</p>
 
 ***(space)***  
