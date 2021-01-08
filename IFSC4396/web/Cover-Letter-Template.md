@@ -4,12 +4,12 @@ Date
 
 ***(space)***  
 
-**Employer Contact Information**
-Name
-Title
-Company
-Address
-City, State, Zip Code
+**Employer Contact Information**  
+Name  
+Title  
+Company  
+Address  
+City, State, Zip Code  
 
 ***(space)***  
 
