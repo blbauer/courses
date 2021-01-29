@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta charset="UTF-8">
+ 	<meta name="description" content="Standard HTML Document">
+ 	<meta name="keywords" content="HTML, CSS, JavaScript">
+	<meta name="author" content="Bruce Bauer">
+	<title>Example of Standard HTML Document</title>
+    <!-- Include jQuery and jQuery Validation libraries - see https://jqueryvalidation.org/ -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.2/dist/jquery.validate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.2/dist/additional-methods.min.js"></script>
+    <!-- Link the stylesheet to the this form -->
+    <link rel="stylesheet" type="text/css" href="assets/style/triangle.css">
+</head>
+<body>
+    <h1>Example of Standard HTML Document</h1>
+    <h1>This is heading 1</h1>
+    <h2>This is heading 2</h2>
+    <h3>This is heading 3</h3>
+    <h4>This is heading 4</h4>
+    <h5>This is heading 5</h5>
+    <h6>This is heading 6</h6>
+    
+    <p>Example of an image</p>
+    <img src="assets/images/ua-little-rock-h-rgb.png" height="27" width="93">
+    <p>
+    This paragraph
+    contains a lot of lines
+    in the source code,
+    but the browser 
+    ignores it.
+    </p>
+
+    <p>
+    This paragraph
+    contains      a lot of spaces
+    in the source     code,
+    but the    browser 
+    ignores it.
+    </p>
+
+    <p>
+    The number of lines in a paragraph depends on the size of your browser window. If you resize the browser window, the number of lines in this paragraph will change.
+    </p>
+
+    <!-- "onsubmit=return false" means we are not going to submit this form to a another webpage -->
+    <form id="TriangleForm" onsubmit="return false">
+    <h1 class="heading">Hypotenuse of a Right Triangle</h1>
+        <label for="leg1" class="formlabel">Enter leg1 of the triangle:</label>
+        <input type="text" id="leg1" name="leg1"
+               data-rule-required="true"  data-msg-required="Leg1 is Required" 
+               data-rule-number="true" data-msg-number="Leg1 must be floating point number"
+               data-rule-min="0" data-msg-min="Leg1 must be greater than zero">
+        <label for="leg1" class="error" id="leg1error"></label>
+        <br>
+        
+        <label for="leg2" class="formlabel">Enter leg2 of the triangle:</label>
+        <input type="text" id="leg2" name="leg2"
+               data-rule-required="true"  data-msg-required="Leg2 is Required" 
+               data-rule-number="true" data-msg-number="Leg2 must be floating point number"
+               data-rule-min="0" data-msg-min="Leg2 must be greater than zero">
+        <label for="leg2" class="error" id="leg2error"></label>
+        <br><br>
+
+        <label for="hypotenuse" class="formlabel">Hypotenuse:</label>
+        <span id="hypotenuse"></span>
+        <br><br>
+        <input type="submit" value="Calculate" id="btnCalc" onclick="displayHypotenuse()">
+        <input type="submit" value="Clear" id="btnClear" onclick="clearForm()" formnovalidate>
+    </form>
+
+    <!-- Include your custom JavaScript library -->
+    <script src="assets/scripts/triangle.js"></script>
+</body>
+</html>
