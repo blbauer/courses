@@ -1,4 +1,4 @@
-function GetStock() {
+async function GetStock() {
     "use strict";
 
     // Get a reference to the form - Use the ID of the form
@@ -17,66 +17,42 @@ function GetStock() {
 
         /* URL for AJAX Call */
         var myURL1 = "https://api.polygon.io/v1/meta/symbols/" + StockSymbol + "/company?apiKey=" + apiKey;
-
-        /* AJAX Method (POST or GET) */
-        var myMethod1 = "GET";
-
-        /* Make sure the document is ready */
-        $(document).ready(function() { 
-
-            /* Perform AJAX call - Note that the AJAX function 
-               does not have a selector */
-
-            $.ajax({
-              method: myMethod1,
-              url: myURL1
-            })
-
-            /* AJAX complete - result is in msg */
-            .done(function( msg1 ) {
-
-                /* Your code to process the result goes here - 
-                   display the returned message */
-                document.getElementById("company").innerHTML = msg1.name;
-                document.getElementById("address").innerHTML = msg1.hq_address;
-                document.getElementById("employees").innerHTML = msg1.employees;
-                document.getElementById("ceo").innerHTML = msg1.ceo;
-                document.getElementById("url").innerHTML = msg1.url;
-                document.getElementById("url").href = msg1.url;
-                document.getElementById("logo").src = msg1.logo;
-            })
-            
+        /* Make the AJAX call */
+        var msg1Object = await fetch(myURL1);
+        /* Check the status */
+        if (msg1Object.status >= 200 && msg1Object.status <= 299) {            
+            var msg1JSONText = await msg1Object.text();
+            // Parse the JSON string into an object
+            var msg1 = JSON.parse(msg1JSONText);
+            /* Your code to process the result goes here - 
+               display the returned message */
+            document.getElementById("company").innerHTML = msg1.name;
+            document.getElementById("address").innerHTML = msg1.hq_address;
+            document.getElementById("employees").innerHTML = msg1.employees;
+            document.getElementById("ceo").innerHTML = msg1.ceo;
+            document.getElementById("url").innerHTML = msg1.url;
+            document.getElementById("url").href = msg1.url;
+            document.getElementById("logo").src = msg1.logo;
+        }
+        else {
             /* AJAX complete with error - probably invalid stock ticker symbol */
-            .fail(function( msg1 ) {
-
                 /* Your code to process the result goes here - 
                    display the returned message */
-                alert("Stock1 Not Found - Status: " + msg1.status)
-            });
-        });    
-        
-        
+            alert("Stock Not Found - Status: " + msg1Object.status)
+            return;
+        }        
  
         /* URL for AJAX Call */
         var myURL2 = "https://api.polygon.io/v2/aggs/ticker/" + StockSymbol + "/range/1/day/" + FromDate + "/" + ToDate + "?unadjusted=false&sort=asc&limit=32&apiKey=" + apiKey;
-
-        /* AJAX Method (POST or GET) */
-        var myMethod2 = "GET";
-
-        /* Make sure the document is ready */
-        $(document).ready(function() { 
-
-            /* Perform AJAX call - Note that the AJAX function 
-               does not have a selector */
-
-            $.ajax({
-              method: myMethod2,
-              url: myURL2
-            })
-
-            /* AJAX complete - result is in msg */
-            .done(function( msg2 ) {
-
+        /* Make the AJAX call */
+        var msg2Object = await fetch(myURL2);
+        /* Check the status */
+        if (msg2Object.status >= 200 && msg2Object.status <= 299) {            
+            var msg2JSONText = await msg2Object.text();
+            // Parse the JSON string into an object
+            var msg2 = JSON.parse(msg2JSONText);
+            /* Your code to process the result goes here - 
+               display the returned message */
                 /* Your code to process the result goes here  
                     display the returned message */
                 var stockdate = [];
@@ -149,16 +125,13 @@ function GetStock() {
                         }
                     }
                 );
-            })
             
-            /* AJAX complete with error - probably invalid stock ticker symbol */
-            .fail(function( msg ) {
-
-                /* Your code to process the result goes here - 
-                   display the returned message */
-                alert("Stock2 Not Found - Status: " + msg.status)
-            });
-        });
+        }
+        else {
+            /* AJAX completed with error - probably invalid stock ticker symbol */
+            alert("Stock Not Found - Status: " + msg2Object.status)
+            return
+        }
     }
 }
 
