@@ -16,7 +16,7 @@ async function GetStock() {
         var ToDate = document.getElementById("ToDate").value;
 
         /* URL for AJAX Call */
-        var myURL1 = "https://api.polygon.io/v1/meta/symbols/" + StockSymbol + "/company?apiKey=" + apiKey;
+        var myURL1 = "https://api.polygon.io/v3/reference/tickers/" + StockSymbol + "?apiKey=" + apiKey;
         /* Make the AJAX call */
         var msg1Object = await fetch(myURL1);
         /* Check the status */
@@ -26,13 +26,14 @@ async function GetStock() {
             var msg1 = JSON.parse(msg1JSONText);
             /* Your code to process the result goes here - 
                display the returned message */
-            document.getElementById("company").innerHTML = msg1.name;
-            document.getElementById("address").innerHTML = msg1.hq_address;
-            document.getElementById("employees").innerHTML = msg1.employees;
-            document.getElementById("ceo").innerHTML = msg1.ceo;
-            document.getElementById("url").innerHTML = msg1.url;
-            document.getElementById("url").href = msg1.url;
-            document.getElementById("logo").src = msg1.logo;
+            document.getElementById("company").innerHTML = msg1.results.name;
+            document.getElementById("address").innerHTML =  msg1.results.address.address1 + ", " + 
+                                                            msg1.results.address.city + ", " + 
+                                                            msg1.results.address.state + "   " + 
+                                                            msg1.results.address.postal_code;
+            document.getElementById("employees").innerHTML = msg1.results.total_employees;
+            document.getElementById("url").innerHTML = msg1.results.homepage_url;
+            document.getElementById("url").href = msg1.results.homepage_url;
         }
         else {
             /* AJAX complete with error - probably invalid stock ticker symbol */
@@ -142,10 +143,8 @@ function ClearForm() {
     document.getElementById("company").innerHTML = "";
     document.getElementById("address").innerHTML = "";
     document.getElementById("employees").innerHTML = "";
-    document.getElementById("ceo").innerHTML = "";
     document.getElementById("url").innerHTML = "";
     document.getElementById("url").href = "";
-    document.getElementById("logo").src = "";
     document.getElementById("StockValueTable").innerHTML = "";
     document.getElementById("StockVolumeTable").innerHTML = "";
     
