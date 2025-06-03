@@ -1,0 +1,191 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Free Web tutorials">
+    <meta name="keywords" content="HTML,CSS,XML,JavaScript">
+    <meta name="author" content="John Smith">
+    <title>The Movie Database</title>
+
+    <!-- Include JQuery to simplify AJAX call - See https://www.w3schools.com/jquery/jquery_get_started.asp 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>-->
+</head>
+
+<body>
+    <p>Enter Movie Name: <input type="text" id="moviename"></p>
+    
+    <!-- Run the MoveSearch function when the button is clicked - See https://www.w3schools.com/js/js_events.asp-->
+    <p><button onclick="MovieSearch()">Search for Movie</button></p>
+
+    
+    <div id="url1"></div>
+    <br><br>
+    <div id="title0"></div>
+    <div id="overview0"></div>
+    <img id="image0">
+    <br><br>
+    <div id="title1"></div>
+    <div id="overview1"></div>
+    <img id="image1">
+    <br><br>
+    <div id="title2"></div>
+    <div id="overview2"></div>
+    <img id="image2">
+    <br><br>
+    <div id="title3"></div>
+    <div id="overview3"></div>
+    <img id="image3">
+    <br><br>
+    <div id="title4"></div>
+    <div id="overview4"></div>
+    <img id="image4">
+    <br><br>
+    <div id="title5"></div>
+    <div id="overview5"></div>
+    <img id="image5">
+    <br><br>
+    <div id="title6"></div>
+    <div id="overview6"></div>
+    <img id="image6">
+    <br><br>
+    <div id="title7"></div>
+    <div id="overview7"></div>
+    <img id="image7">
+    <br><br>
+    <div id="title8"></div>
+    <div id="overview8"></div>
+    <img id="image8">
+    <br><br>
+    <div id="title9"></div>
+    <div id="overview9"></div>
+    <img id="image9">
+    <br><br>
+    <div id="title10"></div>
+    <div id="overview10"></div>
+    <img id="image10">
+    <br><br>
+    <div id="title11"></div>
+    <div id="overview11"></div>
+    <img id="image11">
+    <br><br>
+    <div id="title12"></div>
+    <div id="overview12"></div>
+    <img id="image12">
+    <br><br>
+    <div id="title13"></div>
+    <div id="overview13"></div>
+    <img id="image13">
+    <br><br>
+    <div id="title14"></div>
+    <div id="overview14"></div>
+    <img id="image14">
+    <br><br>
+    <div id="title15"></div>
+    <div id="overview15"></div>
+    <img id="image15">
+    <br><br>
+    <div id="title16"></div>
+    <div id="overview16"></div>
+    <img id="image16">
+    <br><br>
+    <div id="title17"></div>
+    <div id="overview17"></div>
+    <img id="image17">
+    <br><br>
+    <div id="title18"></div>
+    <div id="overview18"></div>
+    <img id="image18">
+    <br><br>
+    <div id="title19"></div>
+    <div id="overview19"></div>
+    <img id="image19">
+    <br><br>
+    <div id="title20"></div>
+    <div id="overview20"></div>
+    <img id="image20">
+    <br><br>
+    <div id="title21"></div>
+    <div id="overview21"></div>
+    <img id="image21">
+    <br><br>
+    <div id="title22"></div>
+    <div id="overview22"></div>
+    <img id="image22">
+    <br><br>
+    <div id="title23"></div>
+    <div id="overview23"></div>
+    <img id="image23">
+    <br><br>
+    <div id="title24"></div>
+    <div id="overview24"></div>
+    <img id="image24">
+
+<script>
+    
+/* Example URL for AJAX Call 
+var myURL = "https://api.themoviedb.org/3/search/movie?api_key=1c3df5b73705f054ad8dfe8bc03f7f33&language=en-US&query=Jack%20Reacher&page=1&include_adult=false";
+*/
+
+async function MovieSearch() {
+    
+    /* Get the movie name for the form */
+    var moviename = document.getElementById("moviename").value;
+    
+    /* Build up the parameters for the URL */
+    var api_key = "1c3df5b73705f054ad8dfe8bc03f7f33";
+    var language = "en-US";
+    var page = "1";
+    var include_adult = "false";
+    var query = encodeURI(moviename);  /* encode the movename since it might have blanks */  
+    var myURL = "https://api.themoviedb.org/3/search/movie?api_key=" + api_key + "&language=" + language + "&query=" + query + "&page="  + page + "&include_adult=" + include_adult;
+
+    /* Display the URL */
+    document.getElementById("url1").innerHTML = "URL:" + myURL;
+    
+    let msgObject = await fetch(myURL);
+    let msgJSONText = await msgObject.text();
+    let msg = JSON.parse(msgJSONText);
+
+    /* Loop through the first 25 results */
+    for (i = 0; i < 25; i++) {
+        
+        /* Display the result */
+        if (i < msg.results.length) {
+
+            /* Set the Title to Visible and set title to value in database */
+            document.getElementById("title" + i).style.display = "block";
+            document.getElementById("title" + i).innerHTML = "Title: " + msg.results[i].original_title;
+
+            /* Set the Overview to Visible and set title to value in database */
+            document.getElementById("overview" + i).style.display = "block";
+            document.getElementById("overview" + i).innerHTML = "Overview: " + msg.results[i].overview;
+
+            /* Some movies don't have a poster - null is returned */
+            if (msg.results[i].poster_path != null) {
+                document.getElementById("image" + i).style.display = "block";
+                document.getElementById("image" + i).src = "https://image.tmdb.org/t/p/w500" + msg.results[i].poster_path;
+            }
+            else
+
+            /* null move poster - don't display a empty value */
+            {
+                document.getElementById("image" + i).src = "";       
+                document.getElementById("image" + i).style.display = "none";
+            }
+        }
+        else
+        {
+            /* Less that 25 movies returned - blank out the rest of the values */
+            document.getElementById("title" + i).innerHTML = "";
+            document.getElementById("title" + i).style.display = "none";
+            document.getElementById("overview" + i).innerHTML = "";
+            document.getElementById("overview" + i).style.display = "none";
+            document.getElementById("image" + i).src = "";
+            document.getElementById("image" + i).style.display = "none";
+        }
+    }
+}
+</script>
+</body>
+</html>
